@@ -49,3 +49,11 @@ gem 'bootstrap-sass', '~> 3.1.1.1'
 
 # Devise login 
 gem 'devise', '~> 3.2.4'
+
+# Simple form
+gem 'simple_form'
+
+# Country data for forms
+gem 'country_select'
+
+gem 'protected_attributes', '~> 1.0.8'
