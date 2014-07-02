@@ -1,7 +1,5 @@
 andrew:
-	first_name: "andrew"
-	last_name: "amundson"
-	email: "drew@cif3r.com"
-	profile_name: "andrew"
-	password: "password"
-	password_confirmation: "password"
+  first_name: "andrew"
+  last_name: "amundson"
+  email: "drewcif3r@gmail.com"
+  profile_name: "andrew"
