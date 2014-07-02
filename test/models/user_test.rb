@@ -20,25 +20,30 @@ class UserTest < ActiveSupport::TestCase
 	  	assert !user.errors[:profile_name].empty?
   	end
 
-  	test "user should enter a unique profile name" do
-	  	user = User.new 
-	  	user.profile_name = 'andrew' 
-	  	user.email =  "drew@cif3r.com"
-	  	user.first_name = "andrew"
-	  	user.last_name = "amundson"
-	  	user.password = "password"
-	  	user.password_confirmation = "password"
-	  	
-	  	assert !user.save
-	  	assert !user.errors[:profile_name].unique?
+  	test "a user should have a unique profile name" do
+    	user = User.new
+    	user.profile_name = users(:andrew).profile_name
+    
+    	assert !user.save
+    	assert !user.errors[:profile_name].empty?
   	end
 
-  	test "user should enter a profile name without spaces."
-  		user = User.new
-  		user.profile_name = 'Name with spaces.'
+  	test "a user should have a profile name without spaces" do
+		user = User.new(first_name: 'andrew', last_name: 'amundson', email: 'drewcif3r@gmail.com')
+		user.profile_name = 'Mike The Frog'
+		user.password = user.password_confirmation = '0yearight'
 
-  		assert !user.save
-  		assert !user.errors[:profile_name].empty?
-  		assert user.errors[:profile_name].include?("Must be formatted correctly.")
+		assert !user.save
+		assert !user.errors[:profile_name].empty?
+		assert user.errors[:profile_name].include?("Must be formatted correctly.")
+	end
+
+	
+	test "a user can have a correctly formatted profile name" do
+    	user = User.new(first_name: 'andrew', last_name: 'amundson', email: 'drewcif3r@gmail.com')
+    	user.password = user.password_confirmation = '0yearight'
+
+	    user.profile_name = 'andrew'
+    	assert user.valid?
   	end
 end
